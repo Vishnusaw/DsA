@@ -1,17 +1,34 @@
 class Solution{
   public:
-    vector<int> countEleLessThanOrEqual(int arr1[], int arr2[], int m, int n)
+   vector<int> countEleLessThanOrEqual(int arr1[], int arr2[], 
+                                 int m, int n)
     {
-        //Your code goes here
+    //Your code goes here
         vector<int> ans;
         
-        sort(arr2, arr2+n);
+        sort(arr2,arr2+n);
         
-        for(int i=0; i<m; i++)
-        {
-            int cnt = upper_bound(arr2, arr2+n, arr1[i]) - arr2;
+        
+        
+        for(int i=0;i<m;i++){
+            int x = arr1[i];
             
-            ans.push_back(cnt);
+            int l =0;
+            int h=n-1;
+            int mid = l + (h-l)/2;
+            
+            
+            while(l<=h){
+                
+                mid = l + (h-l)/2;
+                
+                if(arr2[mid]>x){
+                    h = mid-1;
+                }else{
+                    l = mid+1;
+                }
+            }
+            ans.push_back(l);
         }
         
         return ans;
